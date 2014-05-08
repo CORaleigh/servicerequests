@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Online Service Request Form</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="description" content="Generate service requests for the City of Raleigh's facilities.">
+		<meta name="keywords" content="Facilities and Operations, City of Raleigh, facilities, service requests, Cityworks, GIS">
+		<meta name="author" content="Justin Greco">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    	<link rel="shortcut icon" href="favicon.ico">
+		<link rel="icon" type="image/ico" href="favicon.ico"> 		
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">		
+		<link rel="stylesheet" href="http://js.arcgis.com/3.6/js/esri/css/esri.css">
+		<link rel="stylesheet" href="css/typeahead.js-bootstrap.css">		
+		<link rel="stylesheet" href="css/main.css">	
+		<script src="js/accounting.min.js"></script>
+
+
+		
+	    <!--[if lt IE 10]>
+	      <html class="ie9">
+	    <![endif]-->
+
+	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!--[if lt IE 9]>
+	      <script src="js/html5shiv.js"></script>
+	      <script src="js/respond.min.js"></script>
+	    <![endif]-->				
+	</head>
+	<body>
+		<div id="header" class="jumbotron">
+
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<h2><strong>Facilities &amp; Operations</strong></h2>
+						<p class="lead">Online Service Request Form</p>						
+					</div>
+					<div class="col-sm-3">
+						<span class="help-block">Enter ID to check status</span>	
+						<div class="input-group" style="max-width: 160px">					
+							<input id="statusInput" type="text" class="form-control" placeholder="270874">
+						      <span class="input-group-btn">
+						        <button id="statusBtn" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+						      </span>
+					    </div>
+					</div>
+				</div>
+			</div>		
+		</div>
+<!-- 		<div class="navbar navbar-inverse">
+		</div> -->
+		<div class="modal fade">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title"></h4>
+		      </div>
+		      <div class="modal-body">
+
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->		
+
+		<div class="container">
+			<div class="row">
+			<div class="col-lg-5">
+				<form class="form-horizontal" role="form">			
+					<div class="well shadow">
+	          			<h4>Select Facility</h4>
+						<select id="facilitySelect" class="form-control" disabled>
+							<option value='prompt'>Select a facility...</option>															
+						</select>
+					</div>
+					<div class="well hidden1 shadow">
+						<h4>Select Problem</h4>
+						<select id="problemSelect" class="form-control">
+							<option value='prompt'>Select a problem...</option>						
+						</select>
+						<div class="hidden2">
+							<h4>Answer Questions</h4>
+							<div id="qaDiv"></div>
+						</div>
+
+					</div>				
+					<div class="well hidden2 shadow">
+	          			<h4>Enter Contact Information</h4>
+						  <div class="form-group">
+						    <label for="firstName" class="col-lg-3 control-label">First Name</label>
+						    <div class="col-lg-9">
+						      <input type="text" class="form-control" id="firstName" placeholder="First Name" name="first">
+						      <span class="help-block"></span>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="lastName" class="col-lg-3 control-label">Last Name</label>
+						    <div class="col-lg-9">
+						      <input type="text" class="form-control" id="lastName" placeholder="Last Name" name="last">
+						    	<span class="help-block"></span>						      
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputEmail" class="col-lg-3 control-label">Email</label>
+						    <div class="col-lg-9">
+						      <input type="email" class="form-control" id="inputEmail" placeholder="Email Address" name="email">
+						    	<span class="help-block"></span>						      
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPhone" class="col-lg-3 control-label">Phone #</label>
+						    <div class="col-lg-9">
+						      	<input type="tel" class="form-control" id="inputPhone" placeholder="Phone #" name="phonenum">
+						    	<span class="help-block"></span>						      
+						    </div>
+						  </div>      
+						  <div class="form-group">
+						    <label for="inputComments" class="col-lg-3 control-label">Details</label>
+						    <div class="col-lg-9">
+						      	<textarea class="form-control" id="inputComments" placeholder="Place include building floor, suite/room number, specific problem location, and a detailed problem description" name="comments"></textarea>					      
+						    </div>
+						  </div>   						  
+					</div>
+					<button type="submit" class="btn btn-primary hidden2" style="margin-bottom: 20px">Submit</button>
+				</form>
+				<div class="alert alert-warning fade in shadow">
+			        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			        This form is intended for reporting non-emergency maintenance, please call 919-996-3420 if the problem is:
+			        <ul>
+			        	<li>an <strong>EMERGENCY</strong></li>
+			        	<li>for janitorial service</li>
+			        	<li>for door entrances such as keys, locks, and fobs
+			        	<li>not listed in this form</li>
+			        	<li>for a facility not listed</li>
+			        </ul>
+			        An <strong>EMERGENCY</strong> is described as: a broken waterline with great amounts of water being lost; no electricity that compromises safety or programming; no heating or cooling that compromises programming; and any other situation that may result in an unsafe or hazardous environment for patrons or staff.
+			    </div>				
+			</div>
+			<div class="col-lg-7">
+				<div id="map" class="shadow">
+				</div>
+				<div class="well hidden1 shadow">
+					<h4>Last Five Open Service Requests</h4>
+					<span class="help-block">Click to view problem details</span>
+					<table id="table" class="table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Problem</th>
+								<th>Submitted</th>							
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>					
+				</div>
+
+			</div>
+			</div>
+		</div>
+		<footer class="bs-footer" role="contentinfo">
+			
+
+
+				    
+
+
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-2">
+					<img alt="Official City of Raleigh Seal" class="logo" src="img/City-Seal-BW.png">
+				</div>
+				<div class="col-lg-8">
+				    <div>
+						<p>Designed and developed by the City of Raleigh <a href="http://www.raleighnc.gov/business/content/ITechAdmin/Articles/GeographicInformationServices.html" target="_blank">Geographic Information Services (GIS)</a> division &copy;2013</p>
+						<p>Developed for the City of Raleigh Facilities &amp; Operations division, 919-996-3420</p>				    
+				    </div>					
+				</div>
+				<div class="col-lg-2">
+					<img src='img/PRCR - White.png'>				
+				</div>								
+			</div>
+			</div>
+
+		</footer>
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/jquery.validate.min.js"></script>	
+
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap-datetimepicker.min.js"></script>			
+		<script src="js/typeahead.min.js"></script>		
+	    <!--[if lt IE 10]>
+	      <script type="text/javascript" src="js/jquery.ezpz_hint.js"></script>
+	      <script type="text/javascript">document.documentElement.setAttribute("class","ie9");</script>
+	    <![endif]-->
+		<script src="http://js.arcgis.com/3.6/"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

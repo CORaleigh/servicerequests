@@ -1,0 +1,85 @@
+// EZPZ Hint v1.1.1; Copyright (c) 2009 Mike Enriquez, http://theezpzway.com; Released under the MIT License
+(function($){
+  $.fn.ezpz_hint = function(options){
+    var defaults = {
+      hintClass: 'ezpz-hint',
+      hintName: 'ezpz_hint_dummy_input'
+    };
+    var settings = $.extend(defaults, options);
+    
+    return this.each(function(i){
+      var id = settings.hintName + '_' + i;
+      var hint;
+      var dummy_input;
+      if ($(this).hasClass('select2-focusser') || $(this).hasClass('select2-input'))
+          {
+                    return true; //skips to the next iteration for select2 inputs
+                }
+      
+      // grab the input's placeholder attribute
+      text = $(this).attr('placeholder');
+      
+
+      if (this.nodeName === "TEXTAREA") {
+        // create a dummy input and place it before the input
+        $('<textarea id="' + id + '" value="" style="min-height: 80px" />')
+          .insertBefore($(this));
+        
+        // set the dummy input's attributes
+        hint = $(this).prev('textarea:first'); 
+      } else {
+        // create a dummy input and place it before the input
+        $('<input type="text" id="' + id + '" value="" />')
+          .insertBefore($(this));
+        
+        // set the dummy input's attributes
+        hint = $(this).prev('input:first');
+      }
+
+      hint.attr('class', $(this).attr('class'));
+      hint.attr('size', $(this).attr('size'));
+      hint.attr('autocomplete', 'off');
+      hint.attr('tabIndex', $(this).attr('tabIndex'));
+      hint.addClass(settings.hintClass);
+      hint.val(text);
+      
+      // hide the input
+      $(this).hide();
+      
+      // don't allow autocomplete (sorry, no remember password)
+      $(this).attr('autocomplete', 'off');
+      
+      // bind focus event on the dummy input to swap with the real input
+      hint.focus(function(){
+        dummy_input = $(this);
+        if (this.nodeName === "TEXTAREA") {
+          $(this).next('textarea:first').show();
+          $(this).next('textarea:first').focus();
+          $(this).next('textarea:first').unbind('blur').blur(function(){
+            if ($(this).val() == '') {
+              $(this).hide();
+              dummy_input.show();
+            }
+          });          
+        } else {
+          $(this).next('input:first').show();
+          $(this).next('input:first').focus();
+          $(this).next('input:first').unbind('blur').blur(function(){
+            if ($(this).val() == '') {
+              $(this).hide();
+              dummy_input.show();
+            }
+          });
+        }
+
+        $(this).hide();
+      });
+      
+      // swap if there is a default value
+      if ($(this).val() != ''){
+        hint.focus();
+      };
+    });
+    
+  };
+})(jQuery);

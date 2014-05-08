@@ -1,0 +1,129 @@
+#header {
+	margin-bottom: 24px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	
+}
+
+
+
+#photoCarousel {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#infoDiv {
+	margin-bottom: 20px;
+}
+
+.help-inline {
+	display: none;
+}
+
+.jumbotron {
+	background: #197ec1;
+	background: -moz-radial-gradient(50% 50%, circle, #38a3d9, #0061af);
+	background: -webkit-radial-gradient(50% 50%, circle, #38a3d9, #0061af);
+	background-size: cover;
+	color: white;
+}
+
+#header .help-block {
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	color: white;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 1.428571429;
+}
+
+
+.map {
+	height: 500px;
+	margin-bottom: 20px;
+}
+
+
+
+.shadow {
+	box-shadow: 0 3px 10px #999;
+}
+
+.btn-group {
+	padding-left: 10px;
+}
+
+.bs-footer {
+	padding-top: 40px;
+	padding-bottom: 30px;
+	margin-top: 40px;
+	color: #777;
+	text-align: center;
+	border-top: 1px solid #e5e5e5;
+
+	background: #666;
+	background: -moz-radial-gradient(50% 50%, circle, #888, #666);
+	background: -webkit-radial-gradient(50% 50%, circle, #888, #666);
+	background-size: cover;
+	color: white;
+}
+
+.bs-footer a {
+	color: white;
+}
+
+.bs-footer .container {
+	max-width: 850px;
+}
+
+.logo {
+	padding-bottom: 30px;
+}
+
+#qaDiv .form-group {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.hidden1, .hidden2 {
+	display: none;
+}
+
+.hidden2 {
+	margin-top: 10px;
+}
+
+.well h4 {
+	margin-top: 0px;
+}
+
+textarea {
+	max-width: 100%;
+
+}
+
+#inputComments {
+	min-height: 80px;
+}
+
+
+@media(max-width:767px){
+	.map {
+		margin-left: 20px;
+		margin-right: 20px;
+		height: 300px;
+	}
+}
+
+
+#statusInput { margin-top: 7px\9 }
+
+.hintClass {
+	color: #999999;
+	margin-top: 7px\9;
+}
+
+textarea .hintClass {
+	min-height: 80px	
+}

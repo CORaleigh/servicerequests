@@ -1,0 +1,1064 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"submitto",
+				"submitToCityworks"
+			],
+			[
+				"su",
+				"submitToCityworks"
+			],
+			[
+				"submit",
+				"submitToFieldName"
+			],
+			[
+				"att",
+				"attributes"
+			],
+			[
+				"pre",
+				"precinct"
+			],
+			[
+				"return",
+				"returnGeometry"
+			],
+			[
+				"appe",
+				"append	.append"
+			],
+			[
+				"paddi",
+				"padding-top"
+			],
+			[
+				"buil",
+				"Buildings"
+			],
+			[
+				"bl",
+				"bldgDiv"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"owner",
+				"ownerTable"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"Ide",
+				"IdentifyTask"
+			],
+			[
+				"Find",
+				"FindParameters"
+			],
+			[
+				"per",
+				"permitNumber"
+			],
+			[
+				"append",
+				"appendTo	.appendTo()"
+			],
+			[
+				"ind",
+				"indicator"
+			],
+			[
+				"apne",
+				"appendTo	.appendTo()"
+			],
+			[
+				"in",
+				"indicator"
+			],
+			[
+				"car",
+				"carousel-indicators"
+			],
+			[
+				"mailAddress",
+				"mailAddress3"
+			],
+			[
+				"search",
+				"searchByAddress"
+			],
+			[
+				"marign",
+				"margin-bottom"
+			],
+			[
+				"selec",
+				"selectedIndex"
+			],
+			[
+				"loc",
+				"localDate"
+			],
+			[
+				"summary",
+				"summaryModal"
+			],
+			[
+				"categ",
+				"categoryField"
+			],
+			[
+				"category",
+				"categoryField"
+			],
+			[
+				"categro",
+				"categoryField"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"chart",
+				"chartArray"
+			],
+			[
+				"cal",
+				"callsLayer"
+			],
+			[
+				"ken",
+				"kendoGrid"
+			],
+			[
+				"categoryfi",
+				"categoryfield"
+			],
+			[
+				"no",
+				"notouch"
+			],
+			[
+				"tempm",
+				"tempMapPanel"
+			],
+			[
+				"buff",
+				"buffer"
+			],
+			[
+				"last",
+				"lastGeometry"
+			],
+			[
+				"setCa",
+				"setCategoryQueryString"
+			],
+			[
+				"retu",
+				"return"
+			],
+			[
+				"cate",
+				"Categories"
+			],
+			[
+				"catego",
+				"categories"
+			],
+			[
+				"C",
+				"CATEGORY"
+			],
+			[
+				"DATE",
+				"DATECREATED"
+			],
+			[
+				"disp",
+				"displayField"
+			],
+			[
+				"ret",
+				"returnDistinctValues"
+			],
+			[
+				"select",
+				"selectpicker"
+			],
+			[
+				"graphics",
+				"graphicsLayer"
+			],
+			[
+				"street",
+				"streetService"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"type",
+				"typeahead"
+			],
+			[
+				"Simple",
+				"SimpleLineSymbol"
+			],
+			[
+				"st",
+				"streetTypeService"
+			],
+			[
+				"esri",
+				"esriGeometryPoint"
+			],
+			[
+				"ge",
+				"geometryType"
+			],
+			[
+				"esriG",
+				"esriGeometryPolyline"
+			],
+			[
+				"au",
+				"autoBind"
+			],
+			[
+				"ke",
+				"kendoDropDownList"
+			],
+			[
+				"kendoD",
+				"kendoDropDownList"
+			],
+			[
+				"graphc",
+				"graphicsLayer"
+			],
+			[
+				"cluster",
+				"clusterlayer"
+			],
+			[
+				"ArcGIS",
+				"ArcGISTiledMapServiceLayer"
+			],
+			[
+				"graph",
+				"graphicsLayer"
+			],
+			[
+				"tempmap",
+				"tempmappanel"
+			],
+			[
+				"get",
+				"getCrimes"
+			],
+			[
+				"char",
+				"chartArray"
+			],
+			[
+				"map",
+				"mappanel"
+			],
+			[
+				"print",
+				"printService"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"dista",
+				"distanceInput"
+			],
+			[
+				"geometry",
+				"geometry"
+			],
+			[
+				"vis",
+				"visualization"
+			],
+			[
+				"retur",
+				"returnGeometry"
+			],
+			[
+				"summ",
+				"summaryWindow"
+			],
+			[
+				"sumar",
+				"summaryWindow"
+			],
+			[
+				"Inci",
+				"Incidents"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"kend",
+				"kendowWindow"
+			],
+			[
+				"info",
+				"infoWindow"
+			],
+			[
+				"clear",
+				"clearSingles"
+			],
+			[
+				"clust",
+				"clusterlayer"
+			],
+			[
+				"date",
+				"dateField"
+			],
+			[
+				"CR",
+				"CRIMECLASS"
+			],
+			[
+				"Cate",
+				"Category"
+			],
+			[
+				"column",
+				"columns"
+			],
+			[
+				"geom",
+				"geometries"
+			],
+			[
+				"crime",
+				"crimeLayer"
+			],
+			[
+				"geomet",
+				"geometry"
+			],
+			[
+				"feature",
+				"featureset"
+			],
+			[
+				"place",
+				"placeType"
+			],
+			[
+				"setData",
+				"setDataSource"
+			],
+			[
+				"Data",
+				"DataSource"
+			],
+			[
+				"location",
+				"locationService"
+			],
+			[
+				"serv",
+				"serverFiltering"
+			],
+			[
+				"buffer",
+				"bufferGraphics"
+			],
+			[
+				"where",
+				"whereObj"
+			],
+			[
+				"CRIME",
+				"CRIMECATEGORY"
+			],
+			[
+				"spati",
+				"spatialReference"
+			],
+			[
+				"spat",
+				"spatialReference"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"kendo",
+				"kendoDatePicker"
+			],
+			[
+				"l",
+				"leftpanel"
+			],
+			[
+				"geometr",
+				"geometries"
+			],
+			[
+				"center",
+				"centerAndZoom"
+			],
+			[
+				"data",
+				"dataSource"
+			],
+			[
+				"jq",
+				"jQuery.ajax	jQuery.ajax"
+			],
+			[
+				"min-",
+				"min-width"
+			],
+			[
+				"zoni",
+				"zoningService"
+			],
+			[
+				"gr",
+				"graphicRadio"
+			],
+			[
+				"mail",
+				"mailListService"
+			],
+			[
+				"pro",
+				"propertyService"
+			],
+			[
+				"property",
+				"propertyService"
+			],
+			[
+				"query",
+				"queryByGeometry"
+			],
+			[
+				"single",
+				"singleGraphic"
+			],
+			[
+				"left",
+				"leftpanel"
+			],
+			[
+				"Geometry",
+				"GeometryService"
+			],
+			[
+				"spai",
+				"spatialReference"
+			],
+			[
+				"zoning",
+				"zoningInfo"
+			],
+			[
+				"opac",
+				"changeOpacity"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"services",
+				"servicesList"
+			],
+			[
+				"seri",
+				"servicesList"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"res",
+				"resource"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "js/main.js",
+			"settings":
+			{
+				"buffer_size": 20486,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/JSHint/JSHint.sublime-build",
+	"command_palette":
+	{
+		"height": 81.0,
+		"selected_items":
+		[
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"js",
+				"Preferences: JSLint Settings – Default"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Preferences: Browse Packages"
+			],
+			[
+				"start",
+				"Guard: Start Guard"
+			],
+			[
+				"Start",
+				"Guard: Start Guard"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 101.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Volumes/wwwroot-1/SrTest/js/main.js",
+		"/Users/grecoj/git/gis/ServiceRequests/index.html",
+		"/Users/grecoj/git/gis/ServiceRequests/js/main.js",
+		"/Users/grecoj/git/gis/weather.html",
+		"/Users/grecoj/Documents/iMAPSmobile/iMAPSmobile/iMAPSmobile/iMapsMobile-Info.plist",
+		"/Users/grecoj/Documents/iMAPSmobile/iMAPSmobile/iMAPSmobile/Images.xcassets/LaunchImage.launchimage/Contents.json",
+		"/Users/grecoj/Documents/iMAPSmobile/iMAPSmobile/iMaps Mobile.xcodeproj/project.pbxproj",
+		"/Users/grecoj/Documents/iMAPSmobile/iMAPSmobile/iMAPS.xcodeproj/project.pbxproj",
+		"/Volumes/c$-1/inetpub/wwwroot/SrTest/js/main.js",
+		"/Volumes/c$/inetpub/wwwroot/SrTest/js/main.js",
+		"//mapsarcweb1/c$/inetpub/wwwroot/iMAPS/com/raleigh/components/paneltools/property/services/config.xml",
+		"//mapsarcweb1/c$/inetpub/wwwroot/ServiceFinder/js/plugins/jquery.search-panel.js",
+		"//mapsarcweb1/c$/inetpub/wwwroot/ServiceFinder/js/plugins/jquery.service-panel.js",
+		"//mapsarcweb2/c$/inetpub/wwwroot/WebPortal/js/plugins/jquery.service-panel.js",
+		"//mapsarcweb1/c$/inetpub/wwwroot/ServiceFinder/js/main.js",
+		"/C/Users/grecoj/git/gis/CrimeMap/proxy.ashx",
+		"/C/Users/grecoj/git/gis/CrimeMap/bootstrap/js/bootstrap-datetimepicker.js",
+		"/C/temp/CrimeMap/js/main.js",
+		"/C/temp/CrimeMap/index.html",
+		"/C/Users/grecoj/git/gis/Typology/css/main.css",
+		"/C/Users/grecoj/git/gis/CrimeMap/js/crime.js",
+		"/C/Users/grecoj/git/gis/Typology/js/main.js",
+		"/C/Users/grecoj/AppData/Roaming/Sublime Text 3/Packages/sublime-jslint/sublime-jslint.sublime-settings",
+		"/C/Users/grecoj/git/gis/CrimeMap/fuelux/all.min.js",
+		"/C/Users/grecoj/git/gis/CrimeMap/bootstrap/css/bootstrap-responsive.min.css",
+		"/C/Users/grecoj/git/gis/CrimeMap/bootstrap/js/bootstrap-typeahead.js",
+		"/C/Users/grecoj/Desktop/bootstrap.js",
+		"/C/Users/grecoj/git/gis/CrimeMap/js/main.js",
+		"//mapsarcweb1/c$/inetpub/wwwroot/iMAPS/index.html",
+		"/C/Users/grecoj/git/gis/MapTour/index.html",
+		"/C/Users/grecoj/git/gis/MapTour/app/maptour-config.js",
+		"/C/Users/grecoj/git/gis/MapTour/app/maptour-viewer-min.js",
+		"/C/Users/grecoj/Downloads/Storytelling-MapTour-1.2/index.html",
+		"/C/Users/grecoj/Desktop/index.html",
+		"//gisdevarc1/c$/inetpub/wwwroot/php/crash.php",
+		"/C/Users/grecoj/git/gis/Crime/js/main.js",
+		"/C/Users/grecoj/AppData/Local/Temp/Temp1_layers_point_clustering.zip/data/1000-photos.json",
+		"/C/Users/grecoj/git/gis/Crime/index.html",
+		"/C/Users/grecoj/Desktop/gridMultipleSelectWithoutCTRL.html",
+		"/C/Users/grecoj/git/gis/Zoning/css/main.css",
+		"//gisdevarc1/c$/inetpub/wwwroot/Zoning/js/config.js",
+		"//gisdevarc1/c$/inetpub/wwwroot/Zoning/config.json",
+		"//gisarcweb1/c$/inetpub/wwwroot/RPDCrimeMap/javascript/settings.js",
+		"//gisarcweb1/c$/inetpub/Stormwater/SwuCcbService.php",
+		"/C/inetpub/wwwroot/BOA/index.html",
+		"/C/inetpub/wwwroot/BOA/css/main.css",
+		"/C/inetpub/wwwroot/BOA/js/main.js",
+		"/C/inetpub/wwwroot/BOA/labels.html",
+		"/C/Users/grecoj/Desktop/test.html",
+		"/C/inetpub/wwwroot/BOA/php/labels.php",
+		"/C/inetpub/wwwroot/BOA/labels.php",
+		"//gisdevarc1/c$/inetpub/wwwroot/FPDF/labels.php",
+		"/C/inetpub/wwwroot/Portal/js/plugins/jquery.search-panel.js",
+		"/C/inetpub/wwwroot/Portal/js/main.js",
+		"/C/inetpub/wwwroot/iMAPS/config/stormwater.txt",
+		"/C/inetpub/wwwroot/iMAPS/index.html",
+		"/C/inetpub/wwwroot/iMAPS/js/plugins/jquery.stormwater-search.js",
+		"/C/inetpub/wwwroot/iMAPS/js/plugins/jquery.markup-dialog.js",
+		"/C/inetpub/wwwroot/Portal/js/plugins/jquery.service-panel.js",
+		"/C/inetpub/wwwroot/iMAPS/js/main.js",
+		"/C/inetpub/wwwroot/Portal/js/plugins/jquery.places-panel.js",
+		"/C/inetpub/wwwroot/Portal/css/main.css",
+		"/C/inetpub/wwwroot/parklocatortest/css/main.css",
+		"/C/inetpub/wwwroot/Portal/index.html",
+		"/C/inetpub/wwwroot/iMAPS/js/toolbar.js",
+		"//mapststarcweb1/c$/inetpub/wwwroot/WebPortal/index.html",
+		"/C/inetpub/wwwroot/Portal/js/plugins/jquery.resources-panel.js",
+		"/C/inetpub/wwwroot/iMAPS/js/plugins/jquery.property-search.js",
+		"/C/inetpub/wwwroot/Portal/js/plugins/jquery.search-panel - Copy.js",
+		"/C/inetpub/wwwroot/iMAPS/js/map.js",
+		"/C/inetpub/wwwroot/iMAPS/js/config.js",
+		"/C/inetpub/wwwroot/iMAPS/config/config.txt",
+		"/C/inetpub/wwwroot/iMAPS/js/plugins/jquery.menubar.js",
+		"/C/inetpub/wwwroot/iMAPS/css/main.css",
+		"/C/Users/grecoj/Desktop/Copy of BBinventory.csv",
+		"/C/inetpub/wwwroot/puma/js/main.js",
+		"/C/inetpub/wwwroot/iMAPS/js/plugins.js",
+		"/C/inetpub/wwwroot/iMAPS/js/property.js",
+		"/C/inetpub/wwwroot/iMAPS/js/plugins/jquery.measure-dialog.js",
+		"/C/inetpub/wwwroot/iMAPS/config/puma.txt",
+		"/C/inetpub/wwwroot/iMAPS/js/plugins/jquery.bookmarks.js",
+		"/C/inetpub/wwwroot/iMAPS/js/layerlist.js",
+		"/C/inetpub/wwwroot/iMAPS/404.html",
+		"/C/inetpub/wwwroot/parklocatortest/js/main.js",
+		"/C/inetpub/wwwroot/crash/js/map.js",
+		"/C/inetpub/wwwroot/crash/js/crash.js",
+		"/C/inetpub/wwwroot/crash/js/extras/ClusterLayer.js",
+		"/C/inetpub/wwwroot/crash/js/main.js",
+		"//gisdevarc1/c$/inetpub/wwwroot/Zoning/index.html",
+		"/C/inetpub/wwwroot/iMAPS/js/layerlist2.js",
+		"/E/LaptopBackup/inetpub/wwwroot/JSiMAPS/js/main.js",
+		"/E/LaptopBackup/inetpub/wwwroot/JSiMAPS/js/map.js",
+		"/E/LaptopBackup/inetpub/wwwroot/JSiMAPS/js/layerlist.js",
+		"/C/inetpub/wwwroot/crash/index.html",
+		"/C/inetpub/wwwroot/crash/css/main.css",
+		"//mapsarcweb1/c$/inetpub/wwwroot/iMAPS/config.xml",
+		"/C/inetpub/wwwroot/crash/js/layout.js",
+		"//mapsarcweb1/c$/inetpub/wwwroot/ServiceFinder/config.xml",
+		"/C/inetpub/wwwroot/parklocatortest/index.html",
+		"/C/inetpub/wwwroot/crash/js/config.js",
+		"/C/inetpub/wwwroot/crash/js/codes.js",
+		"//mapsarcweb1/c$/inetpub/wwwroot/ParkLocatorMobile/main.css",
+		"//mapsarcweb1/c$/inetpub/wwwroot/ParkLocatorMobile/index.html",
+		"//mapsarcweb1/c$/inetpub/wwwroot/ParkLocatorMobile/main.js",
+		"/C/inetpub/wwwroot/csstest/css/main.css",
+		"/C/inetpub/wwwroot/csstest/index.html",
+		"//gisarcweb1/Stormwater/SwuStormwaterService.php",
+		"//gisarcweb2/Stormwater/SwuStormwaterService.php",
+		"//gisarcweb2/Stormwater/SwuSecurityService.php",
+		"//gisdevarc1/c$/inetpub/wwwroot/Crash/default.htm",
+		"//gisdevarc1/c$/inetpub/wwwroot/Crash/JS/crash.js",
+		"//gisdevarc1/c$/inetpub/wwwroot/CIP/index.html",
+		"//gisdevarc1/c$/inetpub/wwwroot/CIP/js/main.js",
+		"/C/inetpub/wwwroot/parklocator/index.html",
+		"/C/inetpub/wwwroot/parklocator/css/main.css",
+		"/C/inetpub/wwwroot/parklocator/js/main.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			".temp_caseinsensitive_rename",
+			"init",
+			"blue",
+			"maps.r",
+			"break",
+			"getZo",
+			"getPollingP",
+			"Polling ",
+			"Represent",
+			"Repr",
+			"Rep",
+			"Repre",
+			"Repres",
+			"getWellr",
+			"checksel",
+			"}\n",
+			"{\n",
+			"$",
+			"class='table'",
+			"getPhot",
+			"});",
+			"addsws",
+			"sws",
+			"addSws",
+			"addS",
+			"trim",
+			"export",
+			"id='exp",
+			"query",
+			"typea",
+			"typeah",
+			"temp",
+			"print",
+			"summary",
+			"chart",
+			"option",
+			"absolu",
+			"!important",
+			"count",
+			"resize",
+			"datatypeselect",
+			"setCategory",
+			"config.incidentl",
+			"dateF",
+			"config.in",
+			"categoryf",
+			"mAIN",
+			"ident",
+			"css",
+			"function",
+			"rende",
+			"rendere",
+			"===",
+			"!=",
+			")+",
+			",$",
+			"if(",
+			",0",
+			",[",
+			",function",
+			"function(",
+			"){",
+			"summar",
+			"selected dis",
+			"selected",
+			"\" <option",
+			"\" </",
+			"< op",
+			"< div",
+			"< /",
+			"<",
+			"function updatewhere()",
+			"updatewg",
+			"myModal",
+			"setgri",
+			"option: s",
+			"+ =",
+			"):",
+			"<",
+			")-",
+			"lastGeom",
+			"}else{",
+			"++ ",
+			"r:",
+			";}",
+			"+ +",
+			":  ",
+			" :",
+			"http :  //",
+			",  ",
+			",",
+			",\"",
+			"  :",
+			":",
+			"+  ",
+			"  +",
+			"+",
+			":\"",
+			"?",
+			"!=",
+			"!===",
+			"==",
+			"+",
+			"if(",
+			":",
+			"){",
+			"function(",
+			":",
+			"var selected",
+			"\"categoryfi",
+			"categoryfi",
+			"maplo",
+			"myModal",
+			"addcat",
+			"setc",
+			"setclusterr",
+			"setca",
+			"time",
+			"map",
+			"datech",
+			"setcate",
+			"kendo",
+			"setca",
+			"setgr",
+			"ClusterL",
+			"touch",
+			"selectp",
+			"selectpicker"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"class='table table-striped'",
+			"",
+			") +",
+			", $",
+			"if (",
+			", 0",
+			", [",
+			", function",
+			"function (",
+			") {",
+			"\"<option",
+			"\"</",
+			"<op",
+			"<div",
+			"</",
+			"progressModal",
+			"option:s",
+			"+=",
+			") :",
+			" < ",
+			") - ",
+			"} else {",
+			"++",
+			"r :",
+			"; }",
+			"++",
+			": ",
+			":",
+			"http://",
+			", ",
+			", \"",
+			" : ",
+			"+ ",
+			" +",
+			" + ",
+			": \"",
+			" ? ",
+			"!==",
+			"!=",
+			"===",
+			"if (",
+			"if ",
+			") {",
+			"function (",
+			": ",
+			"progressModal",
+			"PM",
+			"_testextent",
+			"definition",
+			"name",
+			"label",
+			"fillselect",
+			"In Service",
+			"",
+			",-",
+			"In Service,",
+			"\"title\"",
+			"\"items\"",
+			"tabul",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "C:\\Users\\grecoj\\git\\gis\\ServiceRequests"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20486,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16922,
+								16605
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 8430.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 179.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.guard":
+	{
+		"height": 0.0
+	},
+	"project": "",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 211.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
