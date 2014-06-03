@@ -182,6 +182,7 @@ function addYesNoAnswer(form, qAnswers, seq) {
 		$(this).parent().parent().removeClass("has-error");
 
 	});
+
 }
 
 var submitToFieldName = "";
@@ -238,7 +239,6 @@ function addFreeTextAnswer (form, qAnswers, seq) {
 		if ($(this).data("submit") != "") {
 			submitToFieldName = $(this).data("submit");
 		}
-		submitToFieldName = $(this).data("submit");
 				//idx = $(this).index() + 1;
 			if (nextForm.length > 0) {
 				var answer = nextForm.find(".answer");
