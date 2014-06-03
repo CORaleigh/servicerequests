@@ -1,7 +1,7 @@
 var config = {
 	"cwApiUrl" : "http://cityworkstest.ci.raleigh.nc.us/cityworkstest/Services/AMS/",
 	"cwLogin" : {"LoginName" : "interfacew", "Password" : "Welcome1"},
-	"problemSids": [26071, 26072, 26073, 19, 26074, 22, 23, 24, 25, 26, 29, 31, 32, 6, 183895, 142744, 26069, 2062, 2063, 289672, 289673],
+	"problemSids": [293662,293664,293665,293666,293667,293668,293669,293670,293671,293672,2063,2062,31,32,142744,26071,289672,6,26074,29],
 	"baseMap" : "https://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer",
 	"buildings" : "https://maps.raleighnc.gov/arcgis/rest/services/Cityworks/CITYW_BUILDINGS/MapServer/0/query",
 	"districts" : "http://cityworkstest.ci.raleigh.nc.us/arcgis/rest/services/FACILITIES/MapServer/11/query",
@@ -54,7 +54,7 @@ function sendEmail (id) {
 	.always(function() {
 		console.log("complete");
 	});
- 
+
 }
 
 function submitToCityworks (submitTo) {
