@@ -195,7 +195,10 @@ function addThisTextAnswer (form, qAnswers, seq, qid) {
 			form = $(this).closest(".form-group"),
 			idx = form.index() + 1,
 			nextForm = form.next();
-		submitToFieldName = $("option:selected", this).data("submit");
+		if ($("option:selected", this).data("submit") != "") {
+			submitToFieldName = $("option:selected", this).data("submit");
+		}
+
 			//idx = $(this).index() + 1;
 
 		if ($($("option", this)[0]).val() === "prompt") {
@@ -231,6 +234,10 @@ function addFreeTextAnswer (form, qAnswers, seq) {
 				form = $(this).closest(".form-group"),
 				idx = form.index() + 1,
 				nextForm = form.next();
+
+		if ($(this).data("submit") != "") {
+			submitToFieldName = $(this).data("submit");
+		}
 		submitToFieldName = $(this).data("submit");
 				//idx = $(this).index() + 1;
 			if (nextForm.length > 0) {
@@ -263,8 +270,9 @@ function addDateAnswer (form, qAnswers, seq) {
 		var next = $("input", this).data("next"),
 			form = $(this).closest(".form-group"),
 			nextForm = form.parent().next();
-		submitToFieldName = $("input", this).data("submit");
-
+		if ($("input", this).data("submit") != "") {
+			submitToFieldName = $("input", this).data("submit");
+		}
 
 		if (nextForm.length === 0) {
 			addNextQuestion(next);
@@ -305,6 +313,7 @@ function problemSelected () {
 	$.post(config.cwApiUrl+"ServiceRequest/QA",
 	    { data:  dojo.toJson({ ProblemSid: sid}),token:token },
 	    function (data) {
+	    	submitToFieldName = "";
 	    	answers = data.Value.Answers;
 	    	questions = data.Value.Questions;
 	    	$("#qaDiv").empty();
