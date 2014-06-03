@@ -320,7 +320,7 @@ function problemSelected () {
 
 function getProblems () {
 	$.post(config.cwApiUrl+"ServiceRequest/Problems",
-	    { data:  dojo.toJson({ ForPublicOnly: true}),token:token },
+	    { data:  dojo.toJson({ ForPublicOnly: false}),token:token },
 	    function (data) {
 	    	data.Value.sort(function (a, b) {
 	    		return (a.Description > b.Description) ? 1 : -1;
