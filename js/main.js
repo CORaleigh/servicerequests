@@ -176,6 +176,11 @@ function addYesNoAnswer(form, qAnswers, seq) {
 		} else {
 			addNextQuestion(next);
 		}
+
+		if ($(this).data("submit") != "") {
+			submitToFieldName = $(this).data("submit");
+		}
+
 		$(".help-block", $(this).parent().parent()).hide();
 		$("label", $(this).parent()).removeClass("btn-danger");
 		$("label", $(this).parent()).addClass("btn-primary");
