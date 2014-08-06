@@ -3,7 +3,7 @@ var config = {
 	"cwLogin" : {"LoginName" : "interfacew", "Password" : "Welcome1"},
 	"problemSids": [293662,293664,293665,293666,293667,293668,293669,293670,293671,293672,2063,2062,31,32,142744,26071,289672,6,26074,29],
 	"baseMap" : "https://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer",
-	"buildings" : "https://maps.raleighnc.gov/arcgis/rest/services/Cityworks/CITYW_BUILDINGS/MapServer/0/query",
+	"buildings" : "http://cityworkstest.ci.raleigh.nc.us/arcgis/rest/services/FACILITIES/MapServer/1/query",
 	"districts" : "http://cityworkstest.ci.raleigh.nc.us/arcgis/rest/services/FACILITIES/MapServer/11/query",
 	"mail":{
 		"script":"http://maps.raleighnc.gov/php/mail.php",
@@ -47,12 +47,6 @@ function sendEmail (id) {
 	})
 	.done(function() {
 		console.log("success");
-	})
-	.fail(function() {
-		console.log("error");
-	})
-	.always(function() {
-		console.log("complete");
 	});
 
 }
@@ -92,9 +86,11 @@ function submitToCityworks (submitTo) {
 	    { data:  dojo.toJson(submit),token:token },
 	    function (data) {
 	    	if (data.Status === 0) {
-	    		sendEmail(data.Value.RequestId);
+			var id = data.Value.RequestId;
+	    		sendEmail(id);
 	    		clearForm();
-	    		alert("Service request successfully submitted, a confirmation email has been sent to the entered address.");
+	    		alert("Your service request has been submitted, use ID "+id+" to reference this service request. The status can be tracked here: "+
+                                "http://cityworkstest.ci.raleigh.nc.us/ServiceRequest/?id="+id);
 	    	}
 	    }
 	);
