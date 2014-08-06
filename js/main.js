@@ -41,7 +41,7 @@ function sendEmail (id) {
 			to: $("#firstName").val() + " " + $("#lastName").val(),
 			toEmail: $("#inputEmail").val(),
 			message:"Your service request has been submitted, use ID "+id+" to reference this service request. The status can be tracked here: "+
-				"http://cityworkstest.ci.raleigh.nc.us/ServiceRequest/?id="+id,
+				"http://cityworkstest.ci.raleigh.nc.us/servicerequests/?id="+id,
 			subject:"Cityworks Service Request "+id
 		},
 	})
