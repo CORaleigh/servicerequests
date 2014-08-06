@@ -1,7 +1,7 @@
 var config = {
 	"cwApiUrl" : "http://cityworkstest.ci.raleigh.nc.us/cityworkstest/Services/AMS/",
 	"cwLogin" : {"LoginName" : "interfacew", "Password" : "Welcome1"},
-	"problemSids": [293662,293664,293665,293666,293667,293668,293669,293670,293671,293672,2063,2062,31,32,142744,26071,289672,6,26074,29],
+	"problemSids": [293662,293664,293665,293666,293667,293668,293669,293670,293671,293672,2063,2062,32,142744,26071,289672,6,26074,29],
 	"baseMap" : "https://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer",
 	"buildings" : "http://cityworkstest.ci.raleigh.nc.us/arcgis/rest/services/FACILITIES/MapServer/1/query",
 	"districts" : "http://cityworkstest.ci.raleigh.nc.us/arcgis/rest/services/FACILITIES/MapServer/11/query",
@@ -89,8 +89,7 @@ function submitToCityworks (submitTo) {
 			var id = data.Value.RequestId;
 	    		sendEmail(id);
 	    		clearForm();
-	    		alert("Your service request has been submitted, use ID "+id+" to reference this service request. The status can be tracked here: "+
-                                "http://cityworkstest.ci.raleigh.nc.us/ServiceRequest/?id="+id);
+	    		alert("Your service request has been submitted, use ID "+id+" to reference this service request.");
 	    	}
 	    }
 	);
