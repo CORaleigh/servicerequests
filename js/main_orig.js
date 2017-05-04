@@ -1,10 +1,10 @@
 var config = {
-	"cwApiUrl" : "http://cityworks.raleighnc.gov/cityworks/Services/AMS/",
-	"cwLogin" : {"LoginName" : "interfacew", "Password" : "Welcome1"},
+	"cwApiUrl" : "http://cworkpocappwv1/cityworkspoc/Services/AMS/",
+	"cwLogin" : {"LoginName" : "pwadmin", "Password" : "pw2dmin"},
 	"problemSids": [2062,26069,24,26072,26073,32,142744,23,26071,25,258162,27,6,19,22,26074,29,26],
 	"baseMap" : "https://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer",
-	"buildings" : "http://cityworksgisprd.raleighnc.gov/arcgis/rest/services/cityworks/PARKS/MapServer/3/query",
-	"districts" : "http://cityworksgisprd.raleighnc.gov/arcgis/rest/services/cityworks/PARKS/MapServer/28/query",
+	"buildings" : "http://cworkprdarcsvr.ci.raleigh.nc.us:6080/arcgis/rest/services/PARKSREC/MapServer/3/query",
+	"districts" : "http://cworkprdarcsvr.ci.raleigh.nc.us:6080/arcgis/rest/services/PARKSREC/MapServer/31/query",
 	"mail":{
 		"script":"http://maps.raleighnc.gov/php/mail.php",
 		"from":"Cityworks Support",
@@ -41,7 +41,7 @@ function sendEmail (id) {
 			to: $("#firstName").val() + " " + $("#lastName").val(),
 			toEmail: $("#inputEmail").val(),
 			message:"Your service request has been submitted, use ID "+id+" to reference this service request. The status can be tracked here: "+
-				"http://cityworks.raleighnc.gov/servicerequests/?id="+id,
+				"http://cworkpocappwv1/servicerequests/?id="+id,
 			subject:"Cityworks Service Request "+id
 		},
 	})
@@ -417,8 +417,7 @@ function getOpenRequests(extent, sid) {
 	params.Status = "OPEN";
 	params.Closed = false;
 	params.Cancelled = false;
-	console.log("params = ", params);
-	console.log(dojo.toJson(params));
+
 	$.post(config.cwApiUrl+"ServiceRequest/Search",
 	    { data:  dojo.toJson(params),token:token },
 	    function (data) {
