@@ -1,0 +1,31 @@
+#header {
+    background: #197ec1;
+    background: radial-gradient(circle, #38a3d9, #0061af);
+    color: white;
+}
+
+.bs-footer {
+    padding-top: 40px;
+    padding-bottom: 30px;
+    margin-top: 40px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+    background: radial-gradient(circle, #888, #666);
+    color: white;
+}
+
+.bs-footer a { color: white; }
+.bs-footer .container { max-width: 850px; }
+
+.logo { padding-bottom: 30px; }
+
+textarea { max-width: 100%; }
+#inputComments { min-height: 80px; }
+
+.btn-group { padding-left: 10px; }
+
+.has-error input,
+.has-error select,
+.has-error textarea {
+    border-color: #dc3545;
+}
