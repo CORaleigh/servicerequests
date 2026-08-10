@@ -19,8 +19,12 @@ async function cwPost(endpoint, payload, token) {
 }
 
 export async function fetchToken() {
-    const res = await fetch('token.ashx', { method: 'POST' });
+    // BASE_URL, not a bare relative path: the app is deployed under a sub-path,
+    // where "token.ashx" would resolve against the wrong directory if the user
+    // lands on the URL without a trailing slash.
+    const res = await fetch(`${import.meta.env.BASE_URL}token.ashx`, { method: 'POST' });
     const data = await res.json();
+    if (!data?.Value?.Token) throw new Error('Cityworks authentication failed');
     return data.Value.Token;
 }
 

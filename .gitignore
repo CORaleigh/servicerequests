@@ -2,3 +2,9 @@ node_modules/
 dist/
 .env.local
 .env.*.local
+.venv/
+*.sublime-workspace
+*.sublime-project
+cw-secrets.config
+.claude/settings.local.json
+.playwright-mcp/

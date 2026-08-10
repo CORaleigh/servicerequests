@@ -1,3 +1,5 @@
+import { formatDateTime } from '../lib/format';
+
 export default function RecentRequests({ requests, onRowClick }) {
     return (
         <div className="card shadow">
@@ -25,7 +27,7 @@ export default function RecentRequests({ requests, onRowClick }) {
                             >
                                 <td>{req.RequestId}</td>
                                 <td>{req.Description}</td>
-                                <td>{req.DateTimeInit?.replace('T', ' at ')}</td>
+                                <td>{formatDateTime(req.DateTimeInit)}</td>
                             </tr>
                         ))}
                     </tbody>

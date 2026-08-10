@@ -16,11 +16,16 @@ export default function Header({ onLookup, ready }) {
                         <p className="lead mb-0">Online Service Request Form</p>
                     </div>
                     <div className="col-sm-3">
-                        <label className="form-label text-white">Enter ID to check status</label>
+                        <label htmlFor="statusId" className="form-label text-white">
+                            Enter ID to check status
+                        </label>
                         <div className="input-group" style={{ maxWidth: 200 }}>
                             <input
+                                id="statusId"
                                 type="text"
+                                inputMode="numeric"
                                 className="form-control"
+                                aria-label="Service request ID"
                                 placeholder="270874"
                                 value={statusId}
                                 onChange={e => setStatusId(e.target.value)}

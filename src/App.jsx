@@ -14,6 +14,7 @@ import QASection from './components/QASection';
 import ContactForm from './components/ContactForm';
 import RecentRequests from './components/RecentRequests';
 import InfoModal from './components/InfoModal';
+import RequestDetails from './components/RequestDetails';
 
 const PROBLEM_SIDS = [26071, 26072, 26073, 24068, 19, 26074, 22, 23, 24, 25, 26, 31, 32, 28075, 6, 183894, 142744, 258161, 258162, 263680, 263677, 26069, 2062, 2063];
 
@@ -90,26 +91,55 @@ export default function App() {
         setModal({ show: true, title, body });
     }
 
+    function clearAnswers() {
+        setVisibleIds([]); setSelectedAnswers({}); setFreeValues({});
+        setSubmitToFieldName('');
+    }
+
+    function clearProblem() {
+        setSelectedProblem('');
+        setQuestions([]); setAnswers([]);
+        setRecentRequests([]);
+        clearAnswers();
+    }
+
+    function resetForm() {
+        clearProblem();
+        setSelectedFacility('');
+        setFacilityPoint(null); setFacilityAddress(''); setFacilityExtent(null);
+        setContact(EMPTY_CONTACT); setErrors({});
+        setShowAlert(true);
+    }
+
     async function loadRecentRequests(extent, sid) {
         if (!extent) return;
         const params = { Extent: extent, Status: ['OPEN'], Closed: false, Cancelled: false };
-        if (sid > 0) params.ProblemSid = [sid];
-        const ids = await searchRequests(params, token);
-        if (!ids?.length) { setRecentRequests([]); return; }
-        const reqs = await fetchRequestsByIds(ids, token);
-        setRecentRequests(reqs.sort((a, b) => b.RequestId - a.RequestId).slice(0, 5));
+        if (sid > 0) params.ProblemSid = [Number(sid)];
+        try {
+            const ids = await searchRequests(params, token);
+            if (!ids?.length) { setRecentRequests([]); return; }
+            const reqs = await fetchRequestsByIds(ids, token);
+            setRecentRequests(reqs.sort((a, b) => b.RequestId - a.RequestId).slice(0, 5));
+        } catch {
+            // Non-critical panel — leave it empty rather than blocking the form.
+            setRecentRequests([]);
+        }
     }
 
     // ── Event handlers ───────────────────────────────────────────────────────
     async function handleFacilityChange(facility) {
         setSelectedFacility(facility);
-        setSelectedProblem('');
-        setQuestions([]); setAnswers([]);
-        setVisibleIds([]); setSelectedAnswers({}); setFreeValues({});
-        setSubmitToFieldName(''); setRecentRequests([]);
+        clearProblem();
 
         if (!facility) return;
-        const features = await fetchFacilityData(facility);
+
+        let features;
+        try {
+            features = await fetchFacilityData(facility);
+        } catch {
+            openModal('Error', 'Could not look up that facility. Please try again.');
+            return;
+        }
         if (!features.length) return;
 
         const pt = features[0].geometry;
@@ -130,16 +160,20 @@ export default function App() {
 
     async function handleProblemChange(sid) {
         setSelectedProblem(sid);
-        setVisibleIds([]); setSelectedAnswers({}); setFreeValues({});
-        setSubmitToFieldName(''); setShowAlert(false);
+        clearAnswers();
+        setShowAlert(false);
         if (!sid) return;
 
         loadRecentRequests(facilityExtent, sid);
 
-        const qa = await fetchQA(sid, token);
-        setAnswers(qa.Answers ?? []);
-        setQuestions(qa.Questions ?? []);
-        setVisibleIds(qa.Questions?.length ? [qa.Questions[0].QuestionId] : []);
+        try {
+            const qa = await fetchQA(Number(sid), token);
+            setAnswers(qa?.Answers ?? []);
+            setQuestions(qa?.Questions ?? []);
+            setVisibleIds(qa?.Questions?.length ? [qa.Questions[0].QuestionId] : []);
+        } catch {
+            openModal('Error', 'Could not load the questions for that problem. Please try again.');
+        }
     }
 
     function handleAnswerSelect(qid, answer) {
@@ -216,6 +250,11 @@ export default function App() {
     async function handleSubmit(e) {
         e.preventDefault();
         if (!validate()) return;
+        if (!facilityPoint) {
+            openModal('Error', 'This facility has no location on file, so the request cannot be '
+                + 'submitted. Please call 919-996-3420.');
+            return;
+        }
 
         setSubmitting(true);
         try {
@@ -232,7 +271,7 @@ export default function App() {
                 CallerWorkPhone: contact.phone,
                 CallerEmail: contact.email,
                 Address: facilityAddress,
-                ProblemSid: selectedProblem,
+                ProblemSid: Number(selectedProblem),
                 X: facilityPoint.x,
                 Y: facilityPoint.y,
                 Answers: collectAnswers(),
@@ -241,18 +280,17 @@ export default function App() {
             };
 
             const result = await createServiceRequest(payload, token);
-            if (result.Status === 0) {
-                const id = result.Value.RequestId;
-                openModal('Service Request Submitted',
-                    `Your service request has been submitted. Use ID <strong>${id}</strong> to track this request.`);
-                setSelectedFacility(''); setSelectedProblem('');
-                setFacilityPoint(null); setFacilityAddress(''); setFacilityExtent(null);
-                setQuestions([]); setAnswers([]);
-                setVisibleIds([]); setSelectedAnswers({}); setFreeValues({});
-                setSubmitToFieldName(''); setRecentRequests([]);
-                setContact(EMPTY_CONTACT); setErrors({});
-                setShowAlert(true);
+            if (result.Status !== 0 || !result.Value?.RequestId) {
+                throw new Error(result.Message || 'Cityworks rejected the request');
             }
+
+            openModal('Service Request Submitted', (
+                <p className="mb-0">
+                    Your service request has been submitted. Use ID{' '}
+                    <strong>{result.Value.RequestId}</strong> to track this request.
+                </p>
+            ));
+            resetForm();
         } catch {
             openModal('Error', 'An error occurred while submitting your request. Please try again.');
         } finally {
@@ -265,16 +303,10 @@ export default function App() {
         try {
             const req = await fetchRequestById(id, token);
             if (!req) { openModal(`Request #${id}`, 'No request found.'); return; }
-            let body = `<dl class="row mb-0">
-                <dt class="col-sm-4">Status</dt><dd class="col-sm-8">${req.Status ?? ''}</dd>
-                <dt class="col-sm-4">Submitted</dt><dd class="col-sm-8">${req.DateTimeInit ?? ''}</dd>`;
-            if (req.Comments) body += `<dt class="col-sm-4">Comments</dt><dd class="col-sm-8">${req.Comments}</dd>`;
-            if (req.isClosed) body += `<dt class="col-sm-4">Closed On</dt><dd class="col-sm-8">${req.DateTimeClosed}</dd>
-                <dt class="col-sm-4">Closed By</dt><dd class="col-sm-8">${req.ClosedBy}</dd>`;
-            if (req.Cancel) body += `<dt class="col-sm-4">Cancelled</dt><dd class="col-sm-8">${req.DateTimeCancelled}</dd>
-                <dt class="col-sm-4">Reason</dt><dd class="col-sm-8">${req.CancelReason}</dd>`;
-            body += '</dl>';
-            openModal(`Service Request #${req.RequestId} Status`, body);
+            openModal(
+                `Service Request #${req.RequestId} Status`,
+                <RequestDetails request={req} />
+            );
         } catch {
             openModal('Error', 'Could not retrieve the request.');
         }
@@ -285,7 +317,9 @@ export default function App() {
             const req = await fetchRequestById(id, token);
             if (req) openModal(`Problem Details — Request #${req.RequestId}`,
                 req.Details || 'No details available.');
-        } catch {}
+        } catch {
+            openModal('Error', 'Could not retrieve the request details.');
+        }
     }
 
     // ── Render ───────────────────────────────────────────────────────────────

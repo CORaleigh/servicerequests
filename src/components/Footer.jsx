@@ -7,7 +7,7 @@ export default function Footer() {
                         <img
                             alt="Official City of Raleigh Seal"
                             className="logo"
-                            src="/img/City-Seal-BW.png"
+                            src={`${import.meta.env.BASE_URL}img/City-Seal-BW.png`}
                         />
                     </div>
                     <div className="col-lg-8">
@@ -25,7 +25,10 @@ export default function Footer() {
                         <p>Developed for the City of Raleigh Facilities &amp; Operations division, 919-996-3420</p>
                     </div>
                     <div className="col-lg-2">
-                        <img src="/img/PRCR - White.png" alt="Parks, Recreation and Cultural Resources" />
+                        <img
+                            src={`${import.meta.env.BASE_URL}img/PRCR - White.png`}
+                            alt="Parks, Recreation and Cultural Resources"
+                        />
                     </div>
                 </div>
             </div>
