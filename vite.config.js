@@ -1,13 +1,13 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const CW_HOST = 'https://cityworks.raleighnc.gov';
+const DEFAULT_CW_HOST = 'https://cityworks.raleighnc.gov';
 const AUTH_PATH = '/admin/Services/General/Authentication/Authenticate';
 
 // Vite plugin: handles POST /token.ashx in dev by making a server-side call to
 // Cityworks auth with credentials from .env.local. In production, IIS serves
 // token.ashx (the C# handler in public/) which reads from web.config appSettings.
-function cwTokenMiddleware(username, password) {
+function cwTokenMiddleware(username, password, cwHost) {
     return {
         name: 'cw-token',
         configureServer(server) {
@@ -21,7 +21,7 @@ function cwTokenMiddleware(username, password) {
                     return;
                 }
                 try {
-                    const response = await fetch(CW_HOST + AUTH_PATH, {
+                    const response = await fetch(cwHost + AUTH_PATH, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: new URLSearchParams({
@@ -41,6 +41,10 @@ function cwTokenMiddleware(username, password) {
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), '');
 
+    // Which Cityworks instance dev talks to. Both the token exchange and the
+    // API proxy use it, so they can never end up pointing at different servers.
+    const cwHost = env.CW_HOST || DEFAULT_CW_HOST;
+
     return {
         // The production site lives in a sub-path (an IIS application), so built
         // asset URLs must be prefixed with it. Read at runtime via
@@ -49,14 +53,14 @@ export default defineConfig(({ mode }) => {
         base: mode === 'production' ? (env.BASE_PATH || '/servicerequests/') : '/',
         plugins: [
             react(),
-            cwTokenMiddleware(env.CW_USERNAME, env.CW_PASSWORD),
+            cwTokenMiddleware(env.CW_USERNAME, env.CW_PASSWORD, cwHost),
         ],
         server: {
             proxy: {
                 // Proxy Cityworks AMS API calls — avoids CORS in dev.
                 // In production the app is same-origin with the API server.
                 '/admin/': {
-                    target: CW_HOST,
+                    target: cwHost,
                     changeOrigin: true,
                 },
             },
