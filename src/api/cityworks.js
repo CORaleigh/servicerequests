@@ -1,13 +1,19 @@
-// All URLs are relative so they resolve correctly on the production server (same origin)
+// All URLs are relative so they resolve correctly on the server (same origin)
 // and are proxied by Vite in development (see vite.config.js).
-const CW_API = '/admin/Services/AMS/';
+//
+// The path the API is served from varies by instance — production uses /admin/,
+// the test instance uses /backdoor/ — so token.ashx reports it alongside the
+// token and we use that instead of compiling a prefix into the bundle. One
+// build therefore runs on either instance. The default below is only used if a
+// call somehow happens before fetchToken, which the app's init prevents.
+let apiBase = '/admin/Services/AMS/';
 
 async function cwPost(endpoint, payload, token) {
     // Token is sent in both places:
     // - body param  → current Cityworks versions (<23)
     // - Auth header → Cityworks 23+ (body param no longer accepted)
     // Both can coexist safely, so no code change is needed at upgrade time.
-    const res = await fetch(CW_API + endpoint, {
+    const res = await fetch(apiBase + endpoint, {
         method: 'POST',
         headers: {
             Authorization: `cityworks ${token}`,
@@ -24,8 +30,14 @@ export async function fetchToken() {
     // lands on the URL without a trailing slash.
     const res = await fetch(`${import.meta.env.BASE_URL}token.ashx`, { method: 'POST' });
     const data = await res.json();
-    if (!data?.Value?.Token) throw new Error('Cityworks authentication failed');
-    return data.Value.Token;
+    if (!data?.Token) throw new Error(data?.error || 'Cityworks authentication failed');
+
+    // Adopt the instance's API path before any call goes out. Set together with
+    // the token from one response, so the two can never describe different
+    // instances.
+    if (data.ApiBase) apiBase = data.ApiBase;
+
+    return data.Token;
 }
 
 export async function fetchProblems(token) {

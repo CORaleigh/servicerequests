@@ -42,7 +42,8 @@ cw-secrets.example.config   Template for the server-side config (credentials, au
 
 1. On load the app POSTs to `token.ashx`, which exchanges a stored Cityworks
    service-account credential for a short-lived token. **The credential itself
-   never reaches the browser**; the token does.
+   never reaches the browser**; the token does, along with the API path this
+   instance uses (see Test vs production).
 2. In parallel it fetches the Cityworks problem list and the facility list
    (ArcGIS buildings layer, filtered to `WEBFORM = 'Y'`).
 3. Selecting a facility looks up its point geometry and address, derives a
@@ -71,23 +72,25 @@ cp .env.example .env.local     # then fill in CW_USERNAME / CW_PASSWORD
 npm run dev
 ```
 
-`.env.local` holds a Cityworks service-account login that can reach
-`/admin/Services/AMS/`. It is used **only** by the dev server and is never
-embedded in a build. It is gitignored — keep it that way.
+`.env.local` holds a Cityworks service-account login that can reach the AMS API.
+It is used **only** by the dev server and is never embedded in a build. It is
+gitignored — keep it that way.
 
 Two things in `vite.config.js` make local development work:
 
-- **`/admin/` proxy** — forwards Cityworks API calls to the configured
-  Cityworks host, avoiding CORS. In production this is unnecessary because the
-  app is same-origin with the API.
+- **API proxy** — forwards Cityworks API calls to the configured Cityworks host,
+  avoiding CORS. In production this is unnecessary because the app is
+  same-origin with the API.
 - **`/token.ashx` middleware** — stands in for the ASP.NET handler, since Vite
-  can't execute `.ashx`.
+  can't execute `.ashx`. It returns the same `{ Token, ApiBase }` shape.
 
-Both follow `CW_HOST`, which defaults to production. To develop against test,
-set it in `.env.local` along with credentials that instance accepts:
+Both are built from `CW_HOST` and `CW_PREFIX`, which default to production and
+`admin`. To develop against test, set both in `.env.local` along with
+credentials that instance accepts:
 
 ```bash
 CW_HOST=https://cityworkstest.raleighnc.gov
+CW_PREFIX=backdoor
 ```
 
 `npm run build` writes to `dist/`; `npm run preview` serves that build locally.
@@ -109,34 +112,48 @@ CW_HOST=https://cityworkstest.raleighnc.gov
 
 ### Same-origin requirement
 
-The app calls the Cityworks API at the root-relative path
-`/admin/Services/AMS/`. **It must therefore be hosted on the same origin as a
-Cityworks instance.** Hosting it anywhere else means those calls 404 or trip
-CORS — if that's ever needed, the API base in `src/api/cityworks.js` has to
-become an absolute URL and Cityworks has to be configured to allow the origin.
+The app calls the Cityworks API at a root-relative path. **It must therefore be
+hosted on the same origin as a Cityworks instance.** Hosting it anywhere else
+means those calls 404 or trip CORS — if that's ever needed, the API base in
+`src/api/cityworks.js` has to become an absolute URL and Cityworks has to be
+configured to allow the origin.
 
-Because those paths are relative, the app follows whichever host serves it. The
-same build deployed to `cityworkstest.raleighnc.gov` talks to test Cityworks and
-the same build on `cityworks.raleighnc.gov` talks to production, with no code
-change and no rebuild.
-
-The one exception is `CW_AUTH_URL`, which is absolute because `token.ashx` calls
-it server-side. It lives in `cw-secrets.config` and **must name the same
-instance that hosts the app** — otherwise the app authenticates against one
-Cityworks and sends the resulting token to another, and every API call fails.
+Because the path is relative, the app follows whichever host serves it. The same
+build deployed to `cityworkstest.raleighnc.gov` talks to test Cityworks and the
+same build on `cityworks.raleighnc.gov` talks to production, with no code change
+and no rebuild.
 
 ### Test vs production
+
+The two instances differ in more than hostname: **production serves the API from
+`/admin/`, the test instance from `/backdoor/`.**
+
+Rather than compile that prefix into the bundle — which would mean two build
+artifacts and the chance of deploying the test one to production — the app is
+told the prefix at runtime. `token.ashx` returns it alongside the token:
+
+```json
+{ "Token": "…", "ApiBase": "/backdoor/Services/AMS/" }
+```
+
+and it is derived from `CW_AUTH_URL` (the part before `/Services/`), so there is
+no second setting that can disagree with it. Set the auth URL correctly and the
+API path follows.
 
 | | Production | Test |
 |---|---|---|
 | Host | `cityworks.raleighnc.gov` | `cityworkstest.raleighnc.gov` |
-| `CW_AUTH_URL` | `https://cityworks.raleighnc.gov/...` | `https://cityworkstest.raleighnc.gov/...` |
+| API path | `/admin/Services/AMS/` | `/backdoor/Services/AMS/` |
+| `CW_AUTH_URL` | `https://cityworks.raleighnc.gov/admin/Services/…` | `https://cityworkstest.raleighnc.gov/backdoor/Services/…` |
 | Credentials | prod service account | whatever that instance accepts |
 | Build | identical | identical |
 
 Deploying to test is the same `dist/` with a different `cw-secrets.config` —
 provided both are served from the same sub-path. If test uses a different one,
 rebuild with `BASE_PATH` (see below).
+
+`CW_API_BASE` overrides the derived prefix for an instance that doesn't follow
+the `<prefix>/Services/…` layout. Prefer leaving it unset.
 
 ArcGIS is not mirrored: `src/api/gis.js` points at `cityworksgisprd.raleighnc.gov`
 (note `prd`) with absolute URLs, so a test deploy still reads facility and
@@ -211,6 +228,7 @@ accumulate. Clearing the folder before copying is fine as long as
 | 500 on every request | URL Rewrite module not installed |
 | `token.ashx` downloads as a file, or 404s | ASP.NET 4.x not registered, or the folder isn't an IIS application |
 | Token works, API calls 401 | `CW_AUTH_URL` names a different Cityworks instance than the one hosting the app, so the token is valid but not here. Otherwise: service-account password expired, or the account lost AMS access |
+| Token works, API calls 404 | Wrong API prefix — `CW_AUTH_URL` says `/admin/` on an instance serving `/backdoor/`, or vice versa. Check `ApiBase` in the `token.ashx` response |
 | Facility dropdown empty but no error | ArcGIS buildings layer unreachable, or no features have `WEBFORM = 'Y'` |
 | Icons render as boxes | `.woff`/`.woff2` MIME types missing — `web.config` sets these, so check it deployed |
 
