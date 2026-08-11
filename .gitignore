@@ -8,3 +8,4 @@ dist/
 cw-secrets.config
 .claude/settings.local.json
 .playwright-mcp/
+.DS_Store

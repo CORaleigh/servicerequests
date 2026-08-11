@@ -1,8 +1,11 @@
 # Facilities & Operations — Online Service Request Form
 
 Public web form that lets City of Raleigh residents and staff report non-emergency
-maintenance problems at PRCR facilities. Submissions create service requests
+maintenance problems at City facilities. Submissions create service requests
 directly in **Cityworks**, located and routed using **ArcGIS** feature services.
+
+Requests are created in the **Engineering Services (ES)** Cityworks domain, which
+handles facility and operations maintenance.
 
 Built and maintained by the City of Raleigh GIS division.
 
@@ -56,6 +59,38 @@ cw-secrets.example.config   Template for the server-side config (credentials, au
 
 Residents can also check status: `?id=<requestId>` in the URL, or the search box
 in the header.
+
+### Coordinates and projection
+
+Cityworks stores request coordinates in **Web Mercator** (ESRI `102100`, the same
+CRS EPSG calls `3857`). The ArcGIS layers this app reads are published in **NC
+State Plane feet** (ESRI `102719` / EPSG `2264`).
+
+`src/api/gis.js` therefore pins the projection on every query rather than
+inheriting it:
+
+- **`outSR=102100`** — geometry comes back as Web Mercator, so the `X`/`Y` sent
+  to `ServiceRequest/Create` already match what Cityworks expects. No `WKID` is
+  needed on the payload.
+- **`inSR=102100`** on the districts query — the point being tested is Web
+  Mercator while that layer is State Plane. Without it the server reads the
+  point as State Plane, it falls outside every district, the lookup returns no
+  match, and `SubmitTo` is silently left unset so the request never routes to a
+  crew. No error is raised; requests just stop being assigned.
+
+This is not hypothetical. The facilities layer was republished from Web Mercator
+to State Plane around 2026-07-27. Because the queries carried no `outSR`, the app
+followed the layer and began writing State Plane coordinates into a Cityworks
+that expects Web Mercator — for roughly two weeks, until the pinning above was
+added. Requests created in that window have `SRX`/`SRY` around `2105888, 738560`
+instead of `-8754499, 4270224` and need reprojecting in place.
+
+The same drift also silently broke the "last five open requests" panel, which
+searches Cityworks by extent: the extent was State Plane, so it only matched the
+equally-broken recent requests and hid the correct history.
+
+If coordinates ever look wrong again, check the layer's current SR first —
+`.../FACILITIES/MapServer/1?f=json` reports it — before suspecting the app.
 
 The problem types offered by the form are whitelisted by `PROBLEM_SIDS` in
 `src/App.jsx` — Cityworks exposes many more than belong on a public form.
@@ -230,6 +265,8 @@ accumulate. Clearing the folder before copying is fine as long as
 | Token works, API calls 401 | `CW_AUTH_URL` names a different Cityworks instance than the one hosting the app, so the token is valid but not here. Otherwise: service-account password expired, or the account lost AMS access |
 | Token works, API calls 404 | Wrong API prefix — `CW_AUTH_URL` says `/admin/` on an instance serving `/backdoor/`, or vice versa. Check `ApiBase` in the `token.ashx` response |
 | Facility dropdown empty but no error | ArcGIS buildings layer unreachable, or no features have `WEBFORM = 'Y'` |
+| Problem dropdown empty, everything else fine | The service account is in the wrong Cityworks domain. `PROBLEM_SIDS` is specific to Engineering Services (`284010`); an account in another domain returns a different problem set entirely. Decode the token's `DomainId` to check |
+| Requests created but never assigned to a crew | District lookup returning no match — usually an `inSR`/layer projection mismatch (see Coordinates and projection) |
 | Icons render as boxes | `.woff`/`.woff2` MIME types missing — `web.config` sets these, so check it deployed |
 
 ## Notes
