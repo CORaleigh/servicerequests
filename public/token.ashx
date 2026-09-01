@@ -13,11 +13,11 @@ using System.Configuration;
 ///
 /// Responds with { "Token": "...", "ApiBase": "/admin/Services/AMS/" } on
 /// success and { "error": "..." } on failure. ApiBase tells the browser which
-/// path this Cityworks instance serves its API from — production uses /admin/,
-/// the test instance uses /backdoor/ — so a single build works on either
+/// path this Cityworks instance serves its API from - production uses /admin/,
+/// the test instance uses /backdoor/ - so a single build works on either
 /// without a rebuild.
 ///
-/// Always responds with JSON — the client calls res.json() on the result, so an
+/// Always responds with JSON - the client calls res.json() on the result, so an
 /// IIS HTML error page would surface as an unhelpful parse error.
 /// </summary>
 public class Token : IHttpHandler
@@ -74,7 +74,7 @@ public class Token : IHttpHandler
                 raw = reader.ReadToEnd();
 
             // Cityworks answers 200 with Status != 0 on a bad credential, so a
-            // missing token — not the HTTP status — is what marks a failure.
+            // missing token - not the HTTP status - is what marks a failure.
             string token = ExtractToken(raw);
             if (string.IsNullOrEmpty(token))
             {
@@ -112,7 +112,7 @@ public class Token : IHttpHandler
     /// by reusing the prefix of the auth URL that is already configured for it:
     ///
     ///   https://host/admin/Services/General/Authentication/Authenticate
-    ///                ^^^^^^                              → /admin/Services/AMS/
+    ///                ^^^^^^                              -> /admin/Services/AMS/
     ///
     /// Deriving it means there is no second setting that can disagree with
     /// CW_AUTH_URL. Set CW_API_BASE explicitly to override, for an instance
